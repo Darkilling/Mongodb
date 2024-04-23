@@ -1,16 +1,15 @@
+from conectar import *
+from bson import json_util
+import json
 
-from pymongo.mongo_client import MongoClient
-from pymongo.server_api import ServerApi
+db = con()
+coleccion = db.restaurants
+documentos = coleccion.find()
 
-url ="mongodb+srv://Rasma:Taipan_2442@clustermatt.3tir65q.mongodb.net/?retryWrites=true&w=majority&appName=ClusterMatt"
+resultado = []
 
+for documento in documentos:
+    documento ['_id']= str(documento['_id'])
+    resultado.append(documento)
 
-def con():
-    cliente = MongoClient(url, server_api = ServerApi('1'))
-    try:
-        cliente.admin.command('ping')
-        print("Conectados a Mongo Usando python.. XD :D")
-        db = cliente.sede
-        return(db)
-    except Exception as e:
-        print(e)
+print(json_util.dumps(resultado, indent=4))
