@@ -3,7 +3,7 @@ from bson import json_util
 import json
 
 db = con()
-coleccion = db.alumnos
+coleccion = db.restaurants
 documentos = coleccion.find()
 
 resultado = []
