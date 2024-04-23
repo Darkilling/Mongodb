@@ -1,3 +1,6 @@
+from conectar import *
+import json
+
 db = con ()
 coleccion = db.restaurants
 
@@ -26,4 +29,7 @@ nuevo_documento = {
     "name": "",
     "restaurant_id": restaurant_id
 }
+resultado = coleccion.insert_one(nuevo_documento)
+
+print("El id del nuevo documento creado es: ", resultado.inserted_id)
 
